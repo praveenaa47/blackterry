@@ -37,7 +37,7 @@ function EditProduct() {
         <div className="w-full">
           <HeaderAdmin />
         </div>
-        <div className="min-h-screen bg-gray-50 p-6">
+<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
           <h1 className="text-sm font-small mb-6">Edit product</h1>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Left Panel */}

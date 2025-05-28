@@ -25,7 +25,7 @@ function UserDetails() {
         <div className="w-full">
           <HeaderAdmin />
         </div>
-        <div className="p-6 bg-gray-50 min-h-screen">
+<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
                           <h1 style={{ color: 'black', fontSize: '1.875rem' }}>Users Management</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-6xl pt-4">

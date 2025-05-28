@@ -58,8 +58,8 @@ function Sidebar() {
   ];
 
   return (
-  <div className="w-64 bg-white shadow-sm min-h-screen">
-      {/* Logo */}
+<div className="w-64 bg-white shadow-sm h-screen fixed top-0 left-0 z-40 overflow-y-auto">
+        {/* Logo */}
       <div className="p-6 border-b border-gray-100">
         <div className="flex items-center">
           <div className="flex items-center ms-4 mt-3 justify-end">

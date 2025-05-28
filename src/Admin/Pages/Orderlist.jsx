@@ -111,7 +111,7 @@ function Orderlist() {
           <HeaderAdmin />
         </div>
 
-        <div className="min-h-screen bg-gray-50 p-4 md:p-6">
+<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-6">

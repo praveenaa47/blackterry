@@ -68,12 +68,13 @@ function UserList() {
         <div className="w-full">
           <HeaderAdmin />
         </div>
-        <div className="min-h-screen bg-gray-50 p-4 md:p-6">
+        <div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-6">
-                          <h1 style={{ color: 'black', fontSize: '1.875rem' }}>Users List</h1>
-
+              <h1 style={{ color: "black", fontSize: "1.875rem" }}>
+                Users List
+              </h1>
 
               {/* Search and Filters */}
               <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">

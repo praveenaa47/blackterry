@@ -58,38 +58,37 @@ function Product() {
         </div>
 
         {/* Main Content Centered */}
-        <div className="flex-1 p-4 lg:p-6 overflow-auto">
+<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row">
               {/* Filter Section */}
               <div className="lg:w-64 bg-white border-r border-gray-200 p-4">
                 {/* View Toggle */}
-                <div className="mb-6">
-                  <div className="flex border border-gray-200 rounded-lg p-1">
-                    <button
-                      onClick={() => setViewMode("list")}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
-                        viewMode === "list"
-                          ? "bg-sky-500/20 text-gray-900"
-                          : "text-gray-600 hover:bg-gray-100"
-                      }`}
-                    >
-                      <List className="w-4 h-4" />
-                      List View
-                    </button>
-                    <button
-                      onClick={() => setViewMode("grid")}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
-                        viewMode === "grid"
-                          ? "bg-sky-500/20 text-gray-900"
-                          : "text-gray-600 hover:bg-gray-100"
-                      }`}
-                    >
-                      <Grid3X3 className="w-4 h-4" />
-                      Grid View
-                    </button>
-                  </div>
-                </div>
+<div className="mb-6 space-y-2">
+  <button
+    onClick={() => setViewMode("list")}
+    className={`w-full flex items-center gap-2 py-2 mb-3 px-3 rounded-md text-sm font-medium transition-colors border ${
+      viewMode === "list"
+        ? "bg-orange-500/20 text-gray-900 border-orange-400"
+        : "text-gray-600 hover:bg-gray-100 border-gray-200"
+    }`}
+  >
+    <List className="w-4 h-4" />
+    List View
+  </button>
+
+  <button
+    onClick={() => setViewMode("grid")}
+    className={`w-full flex items-center gap-2 py-2 px-3 rounded-md text-sm font-medium transition-colors border ${
+      viewMode === "grid"
+        ? "bg-orange-500/20 text-gray-900 border-orange-400"
+        : "text-gray-600 hover:bg-gray-100 border-gray-200"
+    }`}
+  >
+    <Grid3X3 className="w-4 h-4" />
+    Grid View
+  </button>
+</div>
 
                 {/* Filters */}
                 <div>
@@ -131,7 +130,7 @@ function Product() {
                   <h1 className="text-2xl lg:text-3xl font-semibold text-gray-900">
                     Products
                   </h1>
-                  <Link
+                  <Link style={{textDecoration:"none"}}
                     to="/admin/add-product"
                     className="flex items-center gap-2 no-underline bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                   >
@@ -356,7 +355,7 @@ function Product() {
                   )}
 
                   {/* Dropdown Menu */}
-                  {openDropdown !== null && (
+                  {/* {openDropdown !== null && (
                     <>
                       <div
                         className="fixed inset-0 z-10"
@@ -371,7 +370,7 @@ function Product() {
                         </button>
                       </div>
                     </>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

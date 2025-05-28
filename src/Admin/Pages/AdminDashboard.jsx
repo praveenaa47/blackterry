@@ -11,8 +11,30 @@ import {
 import Sidebar from "../Components/Sidebar";
 import HeaderAdmin from "../Components/HeaderAdmin";
 import productImage from "/src/assets/product.jpg";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 function AdminDashboard() {
+
+  const salesData = [
+  { name: "5k", sales: 20 },
+  { name: "30k", sales: 30 },
+  { name: "20k", sales: 60 },
+  { name: "25k", sales: 10 },
+  { name: "30k", sales: 70 },
+  { name: "35k", sales: 80 },
+  { name: "40k", sales: 140 },
+  { name: "45k", sales: 150 },
+];
+
+
   const statsCards = [
     {
       title: "Total Customers",
@@ -110,7 +132,7 @@ function AdminDashboard() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-4 bg-gray-50 space-y-4">
+<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
           {/* Title */}
           <div>
             <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
@@ -165,53 +187,23 @@ function AdminDashboard() {
                 </button>
               </div>
             </div>
-            <div className="h-64 bg-gradient-to-r from-blue-50 to-purple-50 rounded relative overflow-hidden">
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 300">
-                <polyline
-                  fill="none"
-                  stroke="#3B82F6"
-                  strokeWidth="3"
-                  points="50,250 100,200 150,180 200,160 250,140 300,80 350,120 400,100 450,110 500,90 550,100 600,120 650,140 700,130 750,150"
-                />
-                <polygon
-                  fill="url(#gradient)"
-                  points="50,250 100,200 150,180 200,160 250,140 300,80 350,120 400,100 450,110 500,90 550,100 600,120 650,140 700,130 750,150 750,300 50,300"
-                />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.05" />
-                  </linearGradient>
-                </defs>
-                <circle cx="300" cy="80" r="4" fill="#3B82F6" />
-                <rect x="270" y="50" width="60" height="18" fill="#3B82F6" rx="4" />
-                <text x="300" y="63" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">
-                  $1,659,437
-                </text>
-              </svg>
-              <div className="absolute bottom-3 left-0 right-0 flex justify-between px-6 text-[10px] text-gray-500">
-                <span>5k</span>
-                <span>10k</span>
-                <span>15k</span>
-                <span>20k</span>
-                <span>25k</span>
-                <span>30k</span>
-                <span>35k</span>
-                <span>40k</span>
-                <span>45k</span>
-                <span>50k</span>
-                <span>55k</span>
-                <span>60k</span>
-              </div>
-              <div className="absolute left-2 top-4 bottom-4 flex flex-col justify-between text-[10px] text-gray-500">
-                <span>100k</span>
-                <span>80k</span>
-                <span>60k</span>
-                <span>40k</span>
-                <span>20k</span>
-                <span>0</span>
-              </div>
-            </div>
+          <div className="h-64 bg-white rounded relative overflow-hidden">
+  <ResponsiveContainer width="100%" height="100%">
+    <LineChart data={salesData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Line
+        type="monotone"
+        dataKey="sales"
+        stroke="#3B82F6"
+        strokeWidth={2}
+        activeDot={{ r: 6 }}
+      />
+    </LineChart>
+  </ResponsiveContainer>
+</div>
           </div>
 
           {/* Recent Orders */}
