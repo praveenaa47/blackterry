@@ -20,20 +20,20 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import AdminLayout from "../Components/AdminLayout";
+import { Navigate } from "react-router-dom";
 
 function AdminDashboard() {
-
   const salesData = [
-  { name: "5k", sales: 20 },
-  { name: "30k", sales: 30 },
-  { name: "20k", sales: 60 },
-  { name: "25k", sales: 10 },
-  { name: "30k", sales: 70 },
-  { name: "35k", sales: 80 },
-  { name: "40k", sales: 140 },
-  { name: "45k", sales: 150 },
-];
-
+    { name: "5k", sales: 20 },
+    { name: "30k", sales: 30 },
+    { name: "20k", sales: 60 },
+    { name: "25k", sales: 10 },
+    { name: "30k", sales: 70 },
+    { name: "35k", sales: 80 },
+    { name: "40k", sales: 140 },
+    { name: "45k", sales: 150 },
+  ];
 
   const statsCards = [
     {
@@ -118,139 +118,144 @@ function AdminDashboard() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar Left */}
-      <div className="w-64 bg-white border-r border-gray-200">
-        <Sidebar />
+    <AdminLayout>
+      <div>
+        <h1 className="text-xl mt-5 font-semibold text-gray-900">Dashboard</h1>
       </div>
 
-      {/* Right Content */}
-      <div className="flex-1 flex flex-col text-sm">
-        {/* Header */}
-        <div className="w-full">
-          <HeaderAdmin />
-        </div>
-
-        {/* Main Content */}
-<div className="flex-1 bg-gray-50 space-y-4 mt-[100px] p-7 h-[calc(100vh-100px)] overflow-y-auto">
-          {/* Title */}
-          <div>
-            <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
-          </div>
-
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {statsCards.map((card, index) => {
-              const Icon = card.icon;
-              return (
-                <div key={index} className="bg-white rounded p-4 border border-gray-200 text-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <div
-                      className={`w-10 h-10 ${card.iconBg} rounded flex items-center justify-center`}
-                    >
-                      <Icon className={`w-5 h-5 ${card.iconColor}`} />
-                    </div>
-                  </div>
-                  <div className="mb-1">
-                    <h3 className="text-xs text-gray-600">{card.title}</h3>
-                    <p className="text-lg font-semibold text-gray-900">{card.value}</p>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs">
-                    {card.trend === "up" ? (
-                      <TrendingUp className="w-3 h-3 text-green-500" />
-                    ) : (
-                      <TrendingDown className="w-3 h-3 text-red-500" />
-                    )}
-                    <span
-                      className={card.trend === "up" ? "text-green-600" : "text-red-600"}
-                    >
-                      {card.change}
-                    </span>
-                  </div>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {statsCards.map((card, index) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={index}
+              className="bg-white rounded p-4 border border-gray-200 text-sm"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div
+                  className={`w-10 h-10 ${card.iconBg} rounded flex items-center justify-center`}
+                >
+                  <Icon className={`w-5 h-5 ${card.iconColor}`} />
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Sales Details */}
-          <div className="bg-white rounded border border-gray-200 p-4 space-y-2 text-sm">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="font-semibold text-gray-900 text-base">Sales Details</h2>
-              <div className="flex gap-2">
-                <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
-                  <span>October</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
-                <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
-                  <span>October</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
+              </div>
+              <div className="mb-1">
+                <h3 className="text-xs text-gray-600">{card.title}</h3>
+                <p className="text-lg font-semibold text-gray-900">
+                  {card.value}
+                </p>
+              </div>
+              <div className="flex items-center gap-1 text-xs">
+                {card.trend === "up" ? (
+                  <TrendingUp className="w-3 h-3 text-green-500" />
+                ) : (
+                  <TrendingDown className="w-3 h-3 text-red-500" />
+                )}
+                <span
+                  className={
+                    card.trend === "up" ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  {card.change}
+                </span>
               </div>
             </div>
-          <div className="h-64 bg-white rounded relative overflow-hidden">
-  <ResponsiveContainer width="100%" height="100%">
-    <LineChart data={salesData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Line
-        type="monotone"
-        dataKey="sales"
-        stroke="#3B82F6"
-        strokeWidth={2}
-        activeDot={{ r: 6 }}
-      />
-    </LineChart>
-  </ResponsiveContainer>
-</div>
-          </div>
+          );
+        })}
+      </div>
 
-          {/* Recent Orders */}
-          <div className="bg-white rounded border border-gray-200 text-sm">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
-              <h2 className="font-semibold text-gray-900 text-base">Recent Orders</h2>
-              <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
-                <span>October</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
+      {/* Sales Details */}
+      <div className="bg-white rounded border border-gray-200 p-4 space-y-2 text-sm">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="font-semibold text-gray-900 text-base">
+            Sales Details
+          </h2>
+          <div className="flex gap-2">
+            <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
+              <span>October</span>
+              <ChevronDown className="w-3 h-3" />
+            </button>
+            <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
+              <span>October</span>
+              <ChevronDown className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+        <div className="h-64 bg-white rounded relative overflow-hidden">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={salesData}
+              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="sales"
+                stroke="#3B82F6"
+                strokeWidth={2}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Recent Orders */}
+      <div className="bg-white rounded border border-gray-200 text-sm">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+          <h2 className="font-semibold text-gray-900 text-base">
+            Recent Orders
+          </h2>
+          <button className="flex items-center gap-1 px-2 py-1 text-gray-600 hover:text-gray-900 text-xs">
+            <span>October</span>
+            <ChevronDown className="w-3 h-3" />
+          </button>
+        </div>
+        <div className="grid grid-cols-6 gap-2 p-4 bg-gray-50 font-semibold text-gray-700 text-xs">
+          <div>Product Name</div>
+          <div>Location</div>
+          <div>Date - Time</div>
+          <div>Piece</div>
+          <div>Amount</div>
+          <div>Status</div>
+        </div>
+        {recentOrders.map((order) => (
+          <div
+            key={order.id}
+            className="grid grid-cols-6 gap-2 p-4 border-t border-gray-100 items-center"
+          >
+            <div className="flex items-center gap-2">
+              <img
+                src={productImage}
+                alt={order.productName}
+                className="w-8 h-8 object-cover rounded"
+              />
+              <span className="text-xs font-medium text-gray-900">
+                {order.productName}
+              </span>
             </div>
-            <div className="grid grid-cols-6 gap-2 p-4 bg-gray-50 font-semibold text-gray-700 text-xs">
-              <div>Product Name</div>
-              <div>Location</div>
-              <div>Date - Time</div>
-              <div>Piece</div>
-              <div>Amount</div>
-              <div>Status</div>
+            <div className="text-xs text-gray-600">{order.location}</div>
+            <div className="text-xs text-gray-600">{order.date}</div>
+            <div className="text-xs font-semibold text-gray-900">
+              {order.price}
             </div>
-            {recentOrders.map((order) => (
-              <div
-                key={order.id}
-                className="grid grid-cols-6 gap-2 p-4 border-t border-gray-100 items-center"
+            <div className="text-xs font-semibold text-gray-900">
+              {order.amount}
+            </div>
+            <div>
+              <span
+                className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold ${order.statusColor}`}
               >
-                <div className="flex items-center gap-2">
-                  <img
-  src={productImage}
-  alt={order.productName}
-  className="w-8 h-8 object-cover rounded"
-/>
-                  <span className="text-xs font-medium text-gray-900">{order.productName}</span>
-                </div>
-                <div className="text-xs text-gray-600">{order.location}</div>
-                <div className="text-xs text-gray-600">{order.date}</div>
-                <div className="text-xs font-semibold text-gray-900">{order.price}</div>
-                <div className="text-xs font-semibold text-gray-900">{order.amount}</div>
-                <div>
-                  <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold ${order.statusColor}`}>
-                    {order.status}
-                  </span>
-                </div>
-              </div>
-            ))}
+                {order.status}
+              </span>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    </div>
+    </AdminLayout>
   );
 }
 
